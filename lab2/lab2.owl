@@ -1,0 +1,374 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+    xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+    xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+    xmlns="http://www.owl-ontologies.com/Ontology1695153847.owl#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xml:base="http://www.owl-ontologies.com/Ontology1695153847.owl">
+  <owl:Ontology rdf:about=""/>
+  <owl:Class rdf:ID="Business">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Business</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Employer"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Corporation">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Employer"/>
+    </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Corporation</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="#Employer">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Концепт работодателя</rdfs:comment>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Employer</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="Character">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Концепт персонажей</rdfs:comment>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Character</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="Government">
+    <rdfs:subClassOf rdf:resource="#Employer"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Government</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="Organization">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Organization</rdfs:label>
+  </owl:Class>
+  <owl:ObjectProperty rdf:ID="organization">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Где работает персонаж</rdfs:comment>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <rdf:Description rdf:about="http://www.w3.org/2002/07/owl#Thing"/>
+          <owl:Class rdf:about="#Character"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="#Organization"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >organization</rdfs:label>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="likes">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Множество персонажей, которые нравятся персонажу</rdfs:comment>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <rdf:Description rdf:about="http://www.w3.org/2002/07/owl#Thing"/>
+          <owl:Class rdf:about="#Character"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="#Character"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >likes</rdfs:label>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hates">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Множество персонажей, которые персонажу не нравятся</rdfs:comment>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <rdf:Description rdf:about="http://www.w3.org/2002/07/owl#Thing"/>
+          <owl:Class rdf:about="#Character"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="#Character"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >hates</rdfs:label>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="afraids_of">
+    <rdfs:range rdf:resource="#Character"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Множество персонажей, которых боится персонаж</rdfs:comment>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >afraids_of</rdfs:label>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <rdf:Description rdf:about="http://www.w3.org/2002/07/owl#Thing"/>
+          <owl:Class rdf:about="#Character"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:ID="character_name">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <rdf:Description rdf:about="http://www.w3.org/2002/07/owl#Thing"/>
+          <owl:Class rdf:about="#Character"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Имя и фамилия персонажа</rdfs:comment>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >character_name</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  <owl:FunctionalProperty rdf:ID="educated">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Образован ли персонаж</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >educated</rdfs:label>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <rdf:Description rdf:about="http://www.w3.org/2002/07/owl#Thing"/>
+          <owl:Class rdf:about="#Character"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="credible">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >credible</rdfs:label>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <rdf:Description rdf:about="http://www.w3.org/2002/07/owl#Thing"/>
+          <owl:Class rdf:about="#Character"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Можно ли доверять человеку</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="organization_name">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >organization_name</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Название организации</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <rdf:Description rdf:about="http://www.w3.org/2002/07/owl#Thing"/>
+          <owl:Class rdf:about="#Organization"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="male">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >male</rdfs:label>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <rdf:Description rdf:about="http://www.w3.org/2002/07/owl#Thing"/>
+          <owl:Class rdf:about="#Character"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Пол персонажа</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="organization_type">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Кем спонсируется организация</rdfs:comment>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <rdf:Description rdf:about="http://www.w3.org/2002/07/owl#Thing"/>
+          <owl:Class rdf:about="#Organization"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >organization_type</rdfs:label>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="level_of_affluence">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <rdf:Description rdf:about="http://www.w3.org/2002/07/owl#Thing"/>
+          <owl:Class rdf:about="#Character"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >level_of_affluence</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <rdf:Description rdf:about="lab2_Class0">
+    <rdf:type rdf:datatype="java:edu.stanford.smi.protege.model.DefaultCls"
+    >Cls(:PAL-CONSTRAINT)</rdf:type>
+  </rdf:Description>
+  <rdf:Description rdf:about="lab2_Class28">
+    <rdf:type rdf:datatype="java:edu.stanford.smi.protege.model.DefaultCls"
+    >Cls(:PAL-CONSTRAINT)</rdf:type>
+  </rdf:Description>
+  <Character rdf:about="lab2_Class25">
+    <character_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Tit</character_name>
+    <credible rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >true</credible>
+    <educated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >false</educated>
+    <organization>
+      <Organization rdf:about="lab2_Class21">
+        <organization_type rdf:resource="#Business"/>
+        <organization_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Trade union</organization_name>
+      </Organization>
+    </organization>
+    <hates>
+      <Character rdf:about="lab2_Class2">
+        <credible rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+        >true</credible>
+        <organization>
+          <Organization rdf:about="lab2_Class18">
+            <organization_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >RGM</organization_name>
+            <organization_type rdf:resource="#Government"/>
+          </Organization>
+        </organization>
+        <afraids_of>
+          <Character rdf:about="lab2_Class26">
+            <credible rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+            >false</credible>
+            <educated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+            >false</educated>
+            <male rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+            >true</male>
+            <organization rdf:resource="lab2_Class21"/>
+            <character_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Jean Luc</character_name>
+            <character_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Measurehead</character_name>
+            <hates>
+              <Character rdf:about="lab2_Class4">
+                <level_of_affluence rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >wealthy</level_of_affluence>
+                <likes rdf:resource="lab2_Class2"/>
+                <character_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Kim</character_name>
+                <organization rdf:resource="lab2_Class18"/>
+                <afraids_of rdf:resource="lab2_Class2"/>
+                <male rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+                >false</male>
+                <afraids_of>
+                  <Character rdf:about="lab2_Class24">
+                    <hates>
+                      <Character rdf:about="lab2_Class27">
+                        <character_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                        >Evrart</character_name>
+                        <character_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                        >Claire</character_name>
+                        <male rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+                        >true</male>
+                        <organization rdf:resource="lab2_Class21"/>
+                        <level_of_affluence rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                        >rich</level_of_affluence>
+                        <hates rdf:resource="lab2_Class24"/>
+                        <credible rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+                        >false</credible>
+                        <educated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+                        >true</educated>
+                      </Character>
+                    </hates>
+                    <afraids_of rdf:resource="lab2_Class27"/>
+                    <organization>
+                      <Organization rdf:about="lab2_Class20">
+                        <organization_type rdf:resource="#Business"/>
+                        <organization_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                        >Wild pines</organization_name>
+                      </Organization>
+                    </organization>
+                    <character_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Messier</character_name>
+                    <character_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >Joice</character_name>
+                    <educated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+                    >true</educated>
+                    <level_of_affluence rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >rich</level_of_affluence>
+                    <credible rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+                    >false</credible>
+                  </Character>
+                </afraids_of>
+                <educated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+                >true</educated>
+                <character_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Kitsuragi</character_name>
+              </Character>
+            </hates>
+            <level_of_affluence rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >poor</level_of_affluence>
+          </Character>
+        </afraids_of>
+        <likes rdf:resource="lab2_Class4"/>
+        <level_of_affluence rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >poor</level_of_affluence>
+        <likes>
+          <Character rdf:about="lab2_Class5">
+            <character_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Soona</character_name>
+            <character_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Luukanen</character_name>
+            <level_of_affluence rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >wealthy</level_of_affluence>
+            <organization>
+              <Organization rdf:about="lab2_Class19">
+                <organization_type rdf:resource="#Corporation"/>
+                <organization_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Fortress accident</organization_name>
+              </Organization>
+            </organization>
+            <organization>
+              <Organization rdf:about="lab2_Class22">
+                <organization_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >RSA Radios</organization_name>
+                <organization_type rdf:resource="#Corporation"/>
+              </Organization>
+            </organization>
+            <credible rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+            >true</credible>
+            <educated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+            >true</educated>
+          </Character>
+        </likes>
+        <male rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+        >true</male>
+        <character_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >De Bua</character_name>
+        <character_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Garrie</character_name>
+        <afraids_of rdf:resource="lab2_Class27"/>
+      </Character>
+    </hates>
+    <likes rdf:resource="lab2_Class27"/>
+    <hates rdf:resource="lab2_Class4"/>
+    <level_of_affluence rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >poor</level_of_affluence>
+    <character_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Hardy</character_name>
+    <male rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >true</male>
+  </Character>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.5, Build 663)  http://protege.stanford.edu -->
